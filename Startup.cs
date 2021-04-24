@@ -2,11 +2,13 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ZenCityHallSpendingApi.Data;
 
 namespace ZenCityHallSpendingApi
 {
@@ -21,6 +23,10 @@ namespace ZenCityHallSpendingApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DataContext>(
+                x => x.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+            );
+
             services.AddCors();
             services.AddControllers();
 

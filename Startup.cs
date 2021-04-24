@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ZenCityHallSpendingApi.Data;
+using ZenCityHallSpendingApi.Repositories;
 
 namespace ZenCityHallSpendingApi
 {
@@ -53,6 +54,8 @@ namespace ZenCityHallSpendingApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ZenCityHallSpendingApi", Version = "v1" });
             });
+
+            services.AddScoped<IEmpenhoRepository, EmpenhoRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

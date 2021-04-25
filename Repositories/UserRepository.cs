@@ -1,19 +1,47 @@
-using System.Collections.Generic;
+using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using ZenCityHallSpendingApi.Data;
 using ZenCityHallSpendingApi.Models;
 
 namespace ZenCityHallSpendingApi.Repositories
 {
-    public static class UserRepository
+    public class UserRepository : IUserRepository
     {
-        public static User Get(string username, string password)
+        private readonly DataContext _context;
+        private readonly DbSet<User> _dataset;
+
+        public UserRepository(DataContext context)
         {
-            var users = new List<User>();
+            _context = context;
+            _dataset = _context.Set<User>();
+        }
 
-            users.Add(new User { Id = 1, Username = "batman", Password = "batman", Role = "manager" });
-            users.Add(new User { Id = 2, Username = "robin", Password = "robin", Role = "employee" });
+        public User FindByEmail(string Email)
+        {
+            return _dataset.SingleOrDefault(e => e.Email == Email);
+        }
 
-            return users.Where(x => x.Username.ToLower() == username.ToLower() && x.Password == x.Password).FirstOrDefault();
+        public void Create(User entity)
+        {
+            if (entity == null) throw new ArgumentNullException("User");
+
+            _dataset.Add(entity);
+        }
+
+        public void Update(User entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Delete(User entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

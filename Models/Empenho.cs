@@ -22,7 +22,7 @@ namespace ZenCityHallSpendingApi.Models
         public Decimal ValorEmpenhado { get; set; }
         public string TipoDoctoFiscal  { get; set; }
         public string NroDoctoFiscal { get; set; }
-        public DateTime DataLiquicao { get; set; }
+        public DateTime DataLiquidacao { get; set; }
         public Decimal ValorLiquidacao { get; set; }
         public DateTime DataPagamento { get; set; }
         public Decimal ValorPago { get; set; }

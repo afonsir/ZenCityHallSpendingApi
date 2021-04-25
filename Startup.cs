@@ -1,12 +1,17 @@
+using System;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ZenCityHallSpendingApi.Data;
+using ZenCityHallSpendingApi.Repositories;
+using ZenCityHallSpendingApi.Services;
 
 namespace ZenCityHallSpendingApi
 {
@@ -21,6 +26,10 @@ namespace ZenCityHallSpendingApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DataContext>(
+                x => x.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"))
+            );
+
             services.AddCors();
             services.AddControllers();
 
@@ -47,6 +56,12 @@ namespace ZenCityHallSpendingApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ZenCityHallSpendingApi", Version = "v1" });
             });
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<IEmpenhoRepository, EmpenhoRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAccountService, AccountService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

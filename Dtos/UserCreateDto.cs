@@ -1,17 +1,18 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ZenCityHallSpendingApi.Models
+namespace ZenCityHallSpendingApi.Dtos
 {
-    public class User
+    public class UserCreateDto
     {
-        public int Id { get; set; }
-
         [Required]
         [EmailAddress]
         public string Email { get; set; }
 
         [Required]
-        public string PasswordHash { get; set; }
+        public string Password { get; set; }
+
+        [Required]
+        public string PasswordConfirmation { get; set; }
 
         [Required]
         public string Role { get; set; }

@@ -21,32 +21,5 @@ namespace ZenCityHallSpendingApi.Repositories
         {
             return _dataset.AsEnumerable();
         }
-
-        public Empenho FindById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Create(Empenho entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Update(Empenho entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Delete(Empenho entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool SaveChanges()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void qualquerCoisa(){}
     }
 }

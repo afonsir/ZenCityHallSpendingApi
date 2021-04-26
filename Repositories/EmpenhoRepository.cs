@@ -22,12 +22,12 @@ namespace ZenCityHallSpendingApi.Repositories
         {   
             var totalValorEmpenhado = _dataset.Where(vl => function.ToLower().Equals(vl.Funcao.ToLower())).Sum(x => x.ValorEmpenhado);
             var totalValorPago = _dataset.Where(vl => function.ToLower().Equals(vl.Funcao.ToLower())).Sum(x => x.ValorPago);
-            var total = totalValorEmpenhado - totalValorPago;
+            var diff = totalValorEmpenhado - totalValorPago;
             var resultado = new EmpenhoTotalValueDto(){
                 Funcao = function,
                 ValorEmpenhado = totalValorEmpenhado,
                 ValorPago = totalValorPago,
-                Saldo = total
+                DiferencaOrcamento = diff
             };           
             return resultado;           
         }

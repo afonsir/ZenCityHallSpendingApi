@@ -7,6 +7,6 @@ namespace Dtos
         public string Funcao { get; set; }
         public Decimal ValorEmpenhado { get; set; }       
         public Decimal ValorPago { get; set; }
-        public Decimal Saldo { get; set; }
+        public Decimal DiferencaOrcamento { get; set; }
     }
 }

@@ -20,9 +20,8 @@ namespace ZenCityHallSpendingApi.Repositories
 
         public EmpenhoTotalValueDto FilterByFunction(string function)
         {   
-           
-            var totalValorEmpenhado = _dataset.Where(vl => vl.Funcao == function).Sum(x => x.ValorEmpenhado);
-            var totalValorPago =  _dataset.Where(vl => vl.Funcao == function).Sum(x => x.ValorPago);
+            var totalValorEmpenhado = _dataset.Where(vl => function.ToLower().Equals(vl.Funcao.ToLower())).Sum(x => x.ValorEmpenhado);
+            var totalValorPago = _dataset.Where(vl => function.ToLower().Equals(vl.Funcao.ToLower())).Sum(x => x.ValorPago);
             var total = totalValorEmpenhado - totalValorPago;
             var resultado = new EmpenhoTotalValueDto(){
                 Funcao = function,

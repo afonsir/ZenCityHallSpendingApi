@@ -76,7 +76,6 @@ namespace ZenCityHallSpendingApi.Migrations
                     ""DataPagamento"",
                     ""ValorPago""
                 ) values (
-                    
                     '03744-01',
                     'O08699/2021',
                     'Associacao Esportiva de Inclusao Social  (17.289.742/0001-81)',
@@ -282,7 +281,6 @@ namespace ZenCityHallSpendingApi.Migrations
                     1469.09,
                     to_timestamp('16/03/2021', 'DD/MM/YYYY')::timestamp without time zone,
                     1469.09 
-
                 );
 
                 insert into ""Empenhos""(
@@ -469,7 +467,6 @@ namespace ZenCityHallSpendingApi.Migrations
                     1986.66 
                 );
             ");
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder) { }
